@@ -1,25 +1,28 @@
 <template>
   <nav class="navbar">
     <div class="nav-content">
-      <div class="logo">
+      <router-link to="/" class="logo">
         <div class="logo-symbol">
-          <div class="cube">
-            <div class="cube-face"></div>
-            <div class="cube-face"></div>
-            <div class="cube-face"></div>
-          </div>
+          <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="21" cy="21" r="20" stroke="#40FBDC" stroke-opacity="0.8" stroke-width="2"/>
+            <path d="M29.1428 20.5714L11.1428 10.6404L29.1428 10.2857V20.5714Z" fill="#40FBDC"/>
+            <path d="M29.1428 20.8661L20.767 18.8571L6.85711 22.4928L14.9712 26.9515L14.0551 36L27.1984 28.6339L29.1428 20.8661Z" fill="#40FBDC"/>
+          </svg>
         </div>
         <span class="logo-text">Almerson</span>
-      </div>
+      </router-link>
+
       <div class="nav-center">
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
         <a href="#tech">Technology</a>
         <a href="#contact">Contact</a>
       </div>
+
       <div class="nav-right">
         <button class="btn-ghost">Documentation</button>
-        <button class="btn-primary" @click="scrollToOffers">Get Started</button>
+        <router-link to="/login" class="btn-login">Sign in</router-link>
+        <router-link to="/register" class="btn-primary">Get Started</router-link>
       </div>
     </div>
   </nav>
@@ -40,6 +43,8 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* Navbar */
 .navbar {
   position: fixed;
@@ -65,55 +70,38 @@ export default {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .logo-symbol {
-  width: 28px;
-  height: 28px;
-  position: relative;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.cube {
+.logo-symbol svg {
   width: 100%;
   height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  animation: rotateCube 8s infinite linear;
+  filter: drop-shadow(0 0 8px rgba(64, 251, 220, 0.4));
+  transition: filter 0.3s;
 }
 
-@keyframes rotateCube {
-  0% { transform: rotateX(0deg) rotateY(0deg); }
-  100% { transform: rotateX(360deg) rotateY(360deg); }
-}
-
-.cube-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(64, 251, 220, 0.3), rgba(64, 251, 220, 0.1));
-  border: 1px solid rgba(64, 251, 220, 0.5);
-  backdrop-filter: blur(10px);
-}
-
-.cube-face:nth-child(1) { 
-  transform: translateZ(14px); 
-}
-
-.cube-face:nth-child(2) { 
-  transform: rotateY(90deg) translateZ(14px); 
-}
-
-.cube-face:nth-child(3) { 
-  transform: rotateY(180deg) translateZ(14px); 
+.logo:hover .logo-symbol svg {
+  filter: drop-shadow(0 0 16px rgba(64, 251, 220, 0.8));
 }
 
 .logo-text {
-  font-size: 17px;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
+  font-style: normal;
+  font-size: 18px;
   letter-spacing: -0.5px;
   color: #fff;
+  text-shadow: 0 0 20px rgba(64, 251, 220, 0.3);
 }
 
 /* Navigation Center */
@@ -174,6 +162,27 @@ export default {
   color: #fff;
 }
 
+.btn-login {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-login:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
 .btn-primary {
   background: #40FBDC;
   color: #000;
@@ -185,6 +194,9 @@ export default {
   cursor: pointer;
   transition: all 0.3s;
   box-shadow: 0 4px 12px rgba(64, 251, 220, 0.3);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }
 
 .btn-primary:hover {
@@ -204,6 +216,15 @@ export default {
 
   .btn-ghost {
     display: none;
+  }
+
+  .logo-symbol {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo-text {
+    font-size: 16px;
   }
 }
 </style>
